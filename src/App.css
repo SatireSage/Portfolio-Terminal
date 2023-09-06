@@ -1,0 +1,19 @@
+.App {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  overflow: hidden; /* Prevent vertical scroll */
+}
+
+.App-content {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+}
+
+.App-content {
+  background-color: var(--background-color);
+}
