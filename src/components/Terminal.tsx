@@ -103,7 +103,7 @@ const TerminalComponent: React.FC = () => {
         termRef.current = new Terminal({
             cursorBlink: true,
             fontSize: isMobile() ? 12 : 16,
-            fontFamily: 'FontAwesome, monospace',
+            fontFamily: 'FontAwesome , monospace',
             theme: currentTheme,
         });
 
@@ -122,17 +122,16 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln("   ███████║██║  ██║██║  ██║██║  ██║╚█████╔╝    ███████║██║██║ ╚████║╚██████╔╝██║  ██║");
                 termRef.current.writeln("   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝     ╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝");
                 termRef.current.writeln('');
-                termRef.current.writeln(' If ascii art is not displaying properly, please rotate horizontally or widen the window!');
+                termRef.current.writeln(' * If ascii art is not displaying properly, please rotate horizontally or widen the window!');
                 termRef.current.writeln('');
             }
-            termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
+            termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
             termRef.current.writeln(` Type ${formatText("help", "magenta", true)} to see available commands.`);
             printPrompt();
 
             let cmd = '';
             const onDataHandler = termRef.current.onData((data) => {
-                //if enter is pressed, handle the command
                 if (data === '\r') {
                     termRef.current!.writeln('');
                     termRef.current!.writeln('');
@@ -140,8 +139,7 @@ const TerminalComponent: React.FC = () => {
                     termRef.current!.writeln('');
                     cmd = '';
                     printPrompt();
-                } else if (data === '\x7f') { // if backspace is pressed, remove the last character from the command
-                    //only remove the last character if the command is not empty
+                } else if (data === '\x7f') {
                     if (cmd.length > 0) {
                         cmd = cmd.slice(0, -1);
                         termRef.current!.write('\b \b');
@@ -154,14 +152,12 @@ const TerminalComponent: React.FC = () => {
             
             const onResize = () => {
                 if (termRef.current) {
-                    fitAddon.fit(); // Resize the terminal to fit the new window dimensions
+                    fitAddon.fit();
                 }
             };
 
-            // Add event listener for window resize
             window.addEventListener('resize', onResize);
 
-            // Cleanup on unmount
             return () => {
                 window.removeEventListener('resize', onResize);
                 onDataHandler.dispose();
@@ -187,38 +183,60 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` ${formatText("\uf2b5", "magenta", true)}  Type ${formatText("about", "magenta", true)} to learn more about me!`);
                 // termRef.current.writeln(' \uf07b  Type "projects" to view my projects');
                 termRef.current.writeln(` ${formatText("\uf095", "magenta", true)}  Type ${formatText("contact", "magenta", true)} to view my contact information.`);
+                termRef.current.writeln(` ${formatText("\uf15b", "magenta", true)}  Type ${formatText("resume", "magenta", true)} to view my resume.`);
                 termRef.current.writeln(` ${formatText("\uf0e2", "magenta", true)}  Type ${formatText("clear", "magenta", true)} to clear the terminal.`);
                 termRef.current.writeln(` ${formatText("\uf186", "magenta", true)}  Type ${formatText("toggle", "magenta", true)} to toggle between light and dark mode.`);
                 break;
             case 'about':
-                termRef.current.writeln(" I'm a 4th-year Simon Fraser University student pursuing a Computer Engineering degree with a minor in Computing Sciences. Passionate about coding, I specialize in C and Python. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on sahajs.com 🌐.");
+                termRef.current.writeln(" Hello World!");
+                termRef.current.writeln(" ");
+                termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a Computer Engineering degree with a minor in Computing Sciences. Passionate about coding, I specialize in C and Python. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("https://sahajs.com ", "magenta", true)} 🌐. Type website to check it out!`);
+                termRef.current.writeln(" ");
+                termRef.current.writeln(" Here are some fun facts about me:");
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m majoring in Computer Engineering 🧑‍💻`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m working on making a Pi-Arcade 🕹️`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I like to write short stories 📝`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m a student at SFU 📕`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I like mystery movies 🎥`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I can\'t sing 🎤 but I\'m a music lover 🎧`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m a gamer 🎮`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'ve traveled a lot 🛫`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m an avid photographer 📷`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I love cooking 🍳`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m a dreamer 💭`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'ve been coding since middle school 📖`);
                 break;
             // case 'projects':
             //     termRef.current.writeln(" ");
             //     termRef.current.writeln(' 1. Project A: A brief description...');
             //     termRef.current.writeln(' 2. Project B: Another description...');
             //     break;
+            case 'resume':
+                termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "magenta", true)} ...`);
+                window.open("https://docs.google.com/gview?url=https://raw.githubusercontent.com/SatireSage/Resume/main/Sahaj_Singh_Resume.pdf&embedded=true");
+                break;
             case 'contact':
-                termRef.current.writeln(' \uf1fa Type "email" to contact me via Email');
-                termRef.current.writeln(' \uf0ac Type "website" to visit my Personal Website');
-                termRef.current.writeln(' \uf09b Type "github" to view my GitHub');
-                termRef.current.writeln(' \uf08c Type "linkedin" to view my LinkedIn');
+                termRef.current.writeln(" Here are ways to get in touch with me:");
+                termRef.current.writeln(` ${formatText("\uf1fa", "magenta", true)} Type ${formatText("\"email\"", "magenta", true)} to contact me via Email`);
+                termRef.current.writeln(` ${formatText("\uf0ac", "magenta", true)} Type ${formatText("\"website\"", "magenta", true)} to visit my Personal Website`);
+                termRef.current.writeln(` ${formatText("\uf09b", "magenta", true)} Type ${formatText("\"github\"", "magenta", true)} to view my GitHub`);
+                termRef.current.writeln(` ${formatText("\uf08c", "magenta", true)} Type ${formatText("\"linkedin\"", "magenta", true)} to view my LinkedIn`);
                 break;
             case 'email':
                 window.open("mailto:sahaj_singh@sfu.ca");
-                termRef.current.writeln(' ... Opening \uf1fa email client...');
+                termRef.current.writeln(` ... Redirecting to ${formatText("\uf1fa email", "magenta", true)} client..`);
                 break;
             case 'website':
                 window.open("https://www.sahajs.com");
-                termRef.current.writeln(' ... Opening \uf0ac personal website...');
+                termRef.current.writeln(` ... Redirecting to ${formatText("\uf0ac personal website", "magenta", true)}...`);
                 break;
             case 'github':
                 window.open("https://github.com/SatireSage");
-                termRef.current.writeln(' ... Opening \uf09b GitHub...');
+                termRef.current.writeln(` ... Redirecting to ${formatText("\uf09b GitHub", "magenta", true)}...`);
                 break;
             case 'linkedin':
                 window.open("https://www.linkedin.com/in/sahaj--singh/");
-                termRef.current.writeln(' ... Opening \uf08c LinkedIn...');
+                termRef.current.writeln(` ... Redirecting to ${formatText("\uf08c LinkedIn", "magenta", true)}...`);
                 break;
             case 'toggle':
                 if (theme === 'dark') {
@@ -227,7 +245,7 @@ const TerminalComponent: React.FC = () => {
                     setTheme('dark');
                 }
                 setRefreshKey(prevKey => prevKey + 1);
-                break;                
+                break;          
             default:
                 termRef.current.writeln(` Command not found: ${cmd}`);
                 break;

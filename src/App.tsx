@@ -10,11 +10,11 @@ const App: React.FC = () => {
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowLoader(false);
-    }, 1500);  // loader fades out after 2 seconds
+    }, 1500);
 
     const timer2 = setTimeout(() => {
-      setShowTerminal(true); // terminal fades in a bit after the loader begins fading out
-    }, 1500);  // 500ms after the loader starts its fade-out, start the fade-in for the terminal
+      setShowTerminal(true);
+    }, 1500);
 
     return () => {
       clearTimeout(timer1);
