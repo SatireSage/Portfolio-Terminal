@@ -1,3 +1,8 @@
+:root {
+  --light-color: #fbdb5c;
+  --dark-color: #0c1117;
+}
+
 .App {
   display: flex;
   flex-direction: column;
@@ -16,4 +21,21 @@
 
 .App-content {
   background-color: var(--background-color);
+}
+
+.loader, .fade-in {
+  transition: opacity 1s ease-in-out;
+  opacity: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loader {
+  background-color: var(--dark-color);
+}
+
+.loader.visible, .fade-in.visible {
+  opacity: 1;
 }

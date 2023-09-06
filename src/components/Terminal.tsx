@@ -125,8 +125,9 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(' If ascii art is not displaying properly, please rotate horizontally or widen the window!');
                 termRef.current.writeln('');
             }
+            termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
-            termRef.current.writeln(' Type "help" to see available commands.');
+            termRef.current.writeln(` Type ${formatText("help", "magenta", true)} to see available commands.`);
             printPrompt();
 
             let cmd = '';
@@ -134,7 +135,9 @@ const TerminalComponent: React.FC = () => {
                 //if enter is pressed, handle the command
                 if (data === '\r') {
                     termRef.current!.writeln('');
+                    termRef.current!.writeln('');
                     handleCommand(cmd.trim());
+                    termRef.current!.writeln('');
                     cmd = '';
                     printPrompt();
                 } else if (data === '\x7f') { // if backspace is pressed, remove the last character from the command
@@ -180,21 +183,21 @@ const TerminalComponent: React.FC = () => {
 
         switch (cmd) {
             case 'help':
-                termRef.current.writeln(' Available commands are as follows:');
-                termRef.current.writeln(' \uf2b5  Type "about" to learn more about me');
-                termRef.current.writeln(' \uf07b  Type "projects" to view my projects');
-                termRef.current.writeln(' \uf095  Type "contact" to view my contact information');
-                termRef.current.writeln(' \uf0e2  Type "clear" to clear the terminal');
-                termRef.current.writeln(' \uf186  Type "toggle" to toggle between light and dark mode');
+                termRef.current.writeln(formatText(" Available commands are as follows:", 'magenta', true));
+                termRef.current.writeln(` ${formatText("\uf2b5", "magenta", true)}  Type ${formatText("about", "magenta", true)} to learn more about me!`);
+                // termRef.current.writeln(' \uf07b  Type "projects" to view my projects');
+                termRef.current.writeln(` ${formatText("\uf095", "magenta", true)}  Type ${formatText("contact", "magenta", true)} to view my contact information.`);
+                termRef.current.writeln(` ${formatText("\uf0e2", "magenta", true)}  Type ${formatText("clear", "magenta", true)} to clear the terminal.`);
+                termRef.current.writeln(` ${formatText("\uf186", "magenta", true)}  Type ${formatText("toggle", "magenta", true)} to toggle between light and dark mode.`);
                 break;
             case 'about':
                 termRef.current.writeln(" I'm a 4th-year Simon Fraser University student pursuing a Computer Engineering degree with a minor in Computing Sciences. Passionate about coding, I specialize in C and Python. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on sahajs.com 🌐.");
                 break;
-            case 'projects':
-                termRef.current.writeln(' 1. Project A: A brief description...');
-                termRef.current.writeln(' 2. Project B: Another description...');
-                // List out your projects
-                break;
+            // case 'projects':
+            //     termRef.current.writeln(" ");
+            //     termRef.current.writeln(' 1. Project A: A brief description...');
+            //     termRef.current.writeln(' 2. Project B: Another description...');
+            //     break;
             case 'contact':
                 termRef.current.writeln(' \uf1fa Type "email" to contact me via Email');
                 termRef.current.writeln(' \uf0ac Type "website" to visit my Personal Website');
@@ -203,19 +206,19 @@ const TerminalComponent: React.FC = () => {
                 break;
             case 'email':
                 window.open("mailto:sahaj_singh@sfu.ca");
-                termRef.current.writeln(' Attempting to open \uf1fa email client...');
+                termRef.current.writeln(' ... Opening \uf1fa email client...');
                 break;
             case 'website':
                 window.open("https://www.sahajs.com");
-                termRef.current.writeln(' Attempting to open \uf0ac personal website...');
+                termRef.current.writeln(' ... Opening \uf0ac personal website...');
                 break;
             case 'github':
                 window.open("https://github.com/SatireSage");
-                termRef.current.writeln(' Attempting to open \uf09b GitHub...');
+                termRef.current.writeln(' ... Opening \uf09b GitHub...');
                 break;
             case 'linkedin':
                 window.open("https://www.linkedin.com/in/sahaj--singh/");
-                termRef.current.writeln(' Attempting to open \uf08c LinkedIn...');
+                termRef.current.writeln(' ... Opening \uf08c LinkedIn...');
                 break;
             case 'toggle':
                 if (theme === 'dark') {
