@@ -217,7 +217,7 @@ const TerminalComponent: React.FC = () => {
             //     break;
             case 'resume':
                 termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
-                window.open("https://docs.google.com/gview?url=https://raw.githubusercontent.com/SatireSage/Resume/main/Sahaj_Singh_Resume.pdf&embedded=true");
+                window.open("https://www.resume.sahajs.com");
                 break;
             case 'contact':
                 termRef.current.writeln(" Here are ways to get in touch with me:");
@@ -231,15 +231,15 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf1fa email", "magenta", true)} client..`);
                 break;
             case 'website':
-                window.open("https://www.sahajs.com");
+                window.open("https://sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf0ac personal website", "magenta", true)}...`);
                 break;
             case 'github':
-                window.open("https://github.com/SatireSage");
+                window.open("https://github.sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf09b GitHub", "magenta", true)}...`);
                 break;
             case 'linkedin':
-                window.open("https://www.linkedin.com/in/sahaj--singh/");
+                window.open("https://linkedin.sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf08c LinkedIn", "magenta", true)}...`);
                 break;
             case 'toggle':
@@ -249,7 +249,7 @@ const TerminalComponent: React.FC = () => {
                     setTheme('dark');
                 }
                 setRefreshKey(prevKey => prevKey + 1);
-                break;          
+                break; 
             default:
                 termRef.current.writeln(` Command not found: ${formatText(`${cmd}`, "red", true)}`);
                 break;
