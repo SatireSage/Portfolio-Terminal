@@ -66,6 +66,7 @@ const TerminalComponent: React.FC = () => {
         
     const printPrompt = () => {
         if (termRef.current) {
+            termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             termRef.current.write(' > ');
         }
     };
@@ -146,7 +147,6 @@ const TerminalComponent: React.FC = () => {
             termRef.current.writeln('');
             termRef.current.writeln('');
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
-            termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             printPrompt();
 
             let cmd = '';
@@ -205,7 +205,6 @@ const TerminalComponent: React.FC = () => {
             termRef.current.writeln('');
             termRef.current.writeln('');
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
-            termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             return;
         }
 
@@ -267,7 +266,7 @@ const TerminalComponent: React.FC = () => {
                 break;
             case 'resume':
                 termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
-                window.open("https://www.resume.sahajs.com");
+                window.open("http://resume.sahajs.com");
                 break;
             case 'contact':
                 termRef.current.writeln(" Here are ways to get in touch with me:");
@@ -277,20 +276,20 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` ${formatText("\uf08c", "cyan", true)} Type ${formatText("linkedin", "cyan", true)} to view my LinkedIn`);
                 break;
             case 'email':
-                window.open("mailto:sahaj_singh@sfu.ca");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf1fa email", "gray", true)} client..`);
+                window.open("mailto:sahaj_singh@sfu.ca");
                 break;
             case 'website':
-                window.open("https://sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf0ac personal website", "gray", true)}...`);
+                window.open("https://sahajs.com");
                 break;
             case 'github':
-                window.open("https://github.sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf09b GitHub", "gray", true)}...`);
+                window.open("http://github.sahajs.com");
                 break;
             case 'linkedin':
-                window.open("https://linkedin.sahajs.com");
                 termRef.current.writeln(` ... Redirecting to ${formatText("\uf08c LinkedIn", "gray", true)}...`);
+                window.open("http://linkedin.sahajs.com");
                 break;
             case 'toggle':
                 if (theme === 'dark') {
