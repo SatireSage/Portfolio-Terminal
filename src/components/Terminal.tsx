@@ -191,7 +191,7 @@ const TerminalComponent: React.FC = () => {
             case 'about':
                 termRef.current.writeln(" Hello World!");
                 termRef.current.writeln(" ");
-                termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a ${formatText("Computer Engineering", "magenta", true)} degree with a minor in Computing Sciences. Passionate about coding, I specialize in ${formatText("C and Python", "magenta", true)}. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("https://sahajs.com ", "magenta", true)} 🌐. Type website to check it out!`);
+                termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a ${formatText("Computer Engineering", "magenta", true)} degree with a minor in Computing Sciences. Passionate about coding, I specialize in ${formatText("C and Python", "magenta", true)}. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("https://sahajs.com \uf0ac", "magenta", true)} Click on the link or simple ${formatText("'website'", "magenta", true)} to check it out!`);
                 termRef.current.writeln(" ");
                 termRef.current.writeln(" Here are some fun facts about me:");
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m majoring in Computer Engineering 🧑‍💻`);
@@ -207,8 +207,8 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m a dreamer 💭`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'ve been coding since middle school 📖`);
                 termRef.current.writeln(" ");
-                termRef.current.writeln(" Thanks for visiting my terminal portfolio!");
-                termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
+                termRef.current.writeln(` Thanks for visiting my terminal portfolio! Make sure to check out my ${formatText("\uf09b GitHub", "magenta", true)} and ${formatText("\uf08c LinkedIn", "magenta", true)} by simply typing ${formatText("'contact'", "magenta", true)}!`);
+                termRef.current.writeln(` \uf1f9 ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
                 break;
             // case 'projects':
             //     termRef.current.writeln(" ");
