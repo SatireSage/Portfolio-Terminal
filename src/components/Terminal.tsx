@@ -4,8 +4,33 @@ import { WebLinksAddon } from 'xterm-addon-web-links';
 import { FitAddon } from 'xterm-addon-fit';
 import 'xterm/css/xterm.css';
 import 'font-awesome/css/font-awesome.css';
+import axios from 'axios';
+
+type Repo = {
+    name: string;
+    html_url: string;
+    description: string;
+    pushed_at: string;
+};
 
 const TerminalComponent: React.FC = () => {
+    let githubDataString = '';
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const { data: repos } = await axios.get('https://api.github.com/users/SatireSage/repos');
+                const sortedData = repos.sort((a: any, b: any) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime());
+                const formattedData = sortedData.map((repo: Repo) => ` \x1b[1m\x1b[35mName:\x1b[0m ${repo.name}\n \x1b[1m\x1b[36mURL: ${repo.html_url}\x1b[0m\n \x1b[1m\x1b[35mDescription:\x1b[0m ${repo.description || 'No description'}\n\n`).join('');
+                //const formattedData = sortedData.map((repo: Repo) => `\x1b[1m\x1b[35mName:\x1b[0m ${repo.name} - \x1b[1m\x1b[36m${repo.html_url}\x1b[0m\n\x1b[1m\x1b[35mDescription:\x1b[0m ${repo.description || 'No description'}\n\n`).join('');
+                githubDataString = formattedData;
+            } catch (error) {
+                console.error('Error fetching the repos:', error);
+            }
+        };
+
+        fetchData();
+    }, []);
+
     const isMobile = (): boolean => window.innerWidth <= 768;
 
     const terminalStyle = {
@@ -145,7 +170,7 @@ const TerminalComponent: React.FC = () => {
                         cmd = cmd.slice(0, -1);
                         termRef.current!.write('\b \b');
                     }
-                } else {
+                } else if (data.charCodeAt(0) >= 32) {
                     termRef.current!.write(data);
                     cmd += data;
                 }
@@ -182,9 +207,9 @@ const TerminalComponent: React.FC = () => {
             case 'help':
                 termRef.current.writeln(formatText(" Available commands are as follows:", 'green', true));
                 termRef.current.writeln(` ${formatText("\uf2b5", "magenta", true)}  Type ${formatText("about", "magenta", true)} to learn more about me!`);
-                // termRef.current.writeln(' \uf07b  Type "projects" to view my projects');
+                termRef.current.writeln(` ${formatText("\uf07b", "magenta", true)}  Type ${formatText("projects", "magenta", true)} to view my projects.`);
                 termRef.current.writeln(` ${formatText("\uf095", "cyan", true)}  Type ${formatText("contact", "cyan", true)} to view my contact information.`);
-                termRef.current.writeln(` ${formatText("\uf15b", "cyan", true)}  Type ${formatText("resume", "cyan", true)} to view my resume.`);
+                termRef.current.writeln(` ${formatText("\uf15b", "cyan", true)}  Type ${formatText("resume", "cyan", true)} to view my resume!`);
                 termRef.current.writeln(` ${formatText("\uf0e2", "red", true)}  Type ${formatText("clear", "red", true)} to clear the terminal.`);
                 termRef.current.writeln(` ${formatText("\uf186", "gray", true)}  Type ${formatText("toggle", "gray", true)} to toggle between light and dark mode.`);
                 break;
@@ -210,11 +235,12 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` Thanks for visiting my terminal portfolio! Make sure to check out my ${formatText("\uf09b GitHub", "magenta", true)} and ${formatText("\uf08c LinkedIn", "magenta", true)} by simply typing ${formatText("'contact'", "magenta", true)}!`);
                 termRef.current.writeln(` \uf1f9 ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
                 break;
-            // case 'projects':
-            //     termRef.current.writeln(" ");
-            //     termRef.current.writeln(' 1. Project A: A brief description...');
-            //     termRef.current.writeln(' 2. Project B: Another description...');
-            //     break;
+            case 'projects':
+                githubDataString.split('\n').forEach(line => {
+                    termRef.current!.writeln(line);
+                });
+                termRef.current.writeln(` ${formatText("\uf0ac Feel free to click on the links to visit the repository!", "cyan", true)}`);
+                break;
             case 'resume':
                 termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
                 window.open("https://www.resume.sahajs.com");
