@@ -7,6 +7,13 @@ const App: React.FC = () => {
   const [showLoader, setShowLoader] = useState(true);
   const [showTerminal, setShowTerminal] = useState(false);
 
+  const getLoaderColor = () => {
+    const isDarkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    return isDarkMode 
+      ? getComputedStyle(document.documentElement).getPropertyValue('--light-color').trim()
+      : getComputedStyle(document.documentElement).getPropertyValue('--dark-color').trim();
+  };
+
   useEffect(() => {
     const timer1 = setTimeout(() => {
       setShowLoader(false);
@@ -26,7 +33,7 @@ const App: React.FC = () => {
     <div className="App">
       <main className="App-content">
         <div className={`loader ${showLoader ? 'visible' : ''}`}>
-          <ThreeDots color={getComputedStyle(document.documentElement).getPropertyValue('--light-color')} height={80} width={80} />
+          <ThreeDots color={getLoaderColor()} height={80} width={80} />
         </div>
         <div className={`fade-in ${showTerminal ? 'visible' : ''}`}>
           <Terminal />

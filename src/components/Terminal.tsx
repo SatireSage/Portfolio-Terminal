@@ -102,7 +102,7 @@ const TerminalComponent: React.FC = () => {
         document.documentElement.style.setProperty('--background-color', newBackgroundColor);
         termRef.current = new Terminal({
             cursorBlink: true,
-            fontSize: isMobile() ? 12 : 16,
+            fontSize: isMobile() ? 14 : 18,
             fontFamily: 'FontAwesome , monospace',
             theme: currentTheme,
         });
@@ -121,12 +121,12 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln("   ╚════██║██╔══██║██╔══██║██╔══██║██   ██║    ╚════██║██║██║╚██╗██║██║   ██║██╔══██║");
                 termRef.current.writeln("   ███████║██║  ██║██║  ██║██║  ██║╚█████╔╝    ███████║██║██║ ╚████║╚██████╔╝██║  ██║");
                 termRef.current.writeln("   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝     ╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝");
-                termRef.current.writeln('');
-                termRef.current.writeln(' * If ascii art is not displaying properly, please rotate horizontally or widen the window!');
-                termRef.current.writeln('');
+                termRef.current.writeln(' *If ascii art is not displaying properly, please rotate horizontally or widen the window!');
             }
+            termRef.current.writeln('');
+            termRef.current.writeln('');
+            termRef.current.writeln('');
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
-            termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
             termRef.current.writeln(` Type ${formatText("help", "magenta", true)} to see available commands.`);
             printPrompt();
 
@@ -190,7 +190,7 @@ const TerminalComponent: React.FC = () => {
             case 'about':
                 termRef.current.writeln(" Hello World!");
                 termRef.current.writeln(" ");
-                termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a Computer Engineering degree with a minor in Computing Sciences. Passionate about coding, I specialize in C and Python. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("https://sahajs.com ", "magenta", true)} 🌐. Type website to check it out!`);
+                termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a ${formatText("Computer Engineering", "magenta", true)} degree with a minor in Computing Sciences. Passionate about coding, I specialize in ${formatText("C and Python", "magenta", true)}. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("https://sahajs.com ", "magenta", true)} 🌐. Type website to check it out!`);
                 termRef.current.writeln(" ");
                 termRef.current.writeln(" Here are some fun facts about me:");
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m majoring in Computer Engineering 🧑‍💻`);
@@ -205,6 +205,9 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I love cooking 🍳`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'m a dreamer 💭`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I\'ve been coding since middle school 📖`);
+                termRef.current.writeln(" ");
+                termRef.current.writeln(" Thanks for visiting my terminal portfolio!");
+                termRef.current.writeln(` ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
                 break;
             // case 'projects':
             //     termRef.current.writeln(" ");
