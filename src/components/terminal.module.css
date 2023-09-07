@@ -1,0 +1,11 @@
+.xtermViewport {
+    overflow-y: scroll !important;
+}
+
+.xtermViewport::-webkit-scrollbar {
+    display: none; /* This will hide the scrollbar in WebKit browsers like Chrome and Safari */
+}
+
+.xtermViewport {
+    scrollbar-width: none; /* This will hide the scrollbar in Firefox */
+}

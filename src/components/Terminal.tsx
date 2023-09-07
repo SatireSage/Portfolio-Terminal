@@ -5,6 +5,7 @@ import { FitAddon } from 'xterm-addon-fit';
 import 'xterm/css/xterm.css';
 import 'font-awesome/css/font-awesome.css';
 import axios from 'axios';
+import styles from './terminal.module.css';
 
 type Repo = {
     name: string;
@@ -22,6 +23,10 @@ const TerminalComponent: React.FC = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
+        marginLeft: '20px',  // 20px margin
+        marginRight: '20px', // 20px margin
+        marginTop: '20px',   // 20px margin
+        marginBottom: '20px',// 20px margin
     };
 
     const terminalRef = useRef<HTMLDivElement>(null);
@@ -121,6 +126,11 @@ const TerminalComponent: React.FC = () => {
             termRef.current.loadAddon(fitAddon);
             termRef.current.open(terminalRef.current);
             fitAddon.fit();
+
+            const terminalViewport = terminalRef.current.querySelector('.xterm-viewport');
+            if (terminalViewport) {
+                terminalViewport.classList.add(styles.xtermViewport);
+            }
 
             if (!isMobile()) {
                 termRef.current.writeln('');
