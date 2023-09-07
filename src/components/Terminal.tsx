@@ -232,6 +232,7 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` \uf1f9 ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
                 break;
             case 'projects':
+                termRef.current!.writeln(colorize(" Fetching projects...", 'gray', true));
                 let githubDataString = '';
                 (async () => {
                     try {
