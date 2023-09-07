@@ -24,11 +24,11 @@ const TerminalComponent: React.FC = () => {
     const [refreshKey, setRefreshKey] = useState<number>(0);
     const DARK_THEME = {
         background: '#0c1117',
-        foreground: '#fbdb5c',
+        foreground: '#fffff0',
     };
     
     const LIGHT_THEME = {
-        background: '#fbdb5c',
+        background: '#fffff0',
         foreground: '#0c1117',
     };    
     const getUserPreferredTheme = (): string => {
@@ -57,7 +57,7 @@ const TerminalComponent: React.FC = () => {
         }
     };
 
-    const colorize = (text: string, color: string): string => {
+    const colorize = (text: string, color: string, isBold: boolean): string => {
         const colors: Record<string, string> = {
             red: '\x1b[31m',
             green: '\x1b[32m',
@@ -70,8 +70,9 @@ const TerminalComponent: React.FC = () => {
             bold: '\x1b[1m',
             reset: '\x1b[0m',
         };
-    
-        return `${colors[color] || ''}${text}${colors.reset}`;
+
+        const bold = isBold ? '\x1b[1m' : '';
+        return `${bold}${colors[color] || ''}${text}${colors.reset}`;
     };
     // usage example: termRef.current.writeln(colorize("Welcome to Sahaj's terminal portfolio!", 'red'));
 
@@ -121,13 +122,13 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln("   ╚════██║██╔══██║██╔══██║██╔══██║██   ██║    ╚════██║██║██║╚██╗██║██║   ██║██╔══██║");
                 termRef.current.writeln("   ███████║██║  ██║██║  ██║██║  ██║╚█████╔╝    ███████║██║██║ ╚████║╚██████╔╝██║  ██║");
                 termRef.current.writeln("   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝     ╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝");
-                termRef.current.writeln(' *If ascii art is not displaying properly, please rotate horizontally or widen the window!');
+                termRef.current.writeln(colorize(" *If ascii art is not displaying properly, please rotate horizontally or widen the window!", 'gray', true));
             }
             termRef.current.writeln('');
             termRef.current.writeln('');
             termRef.current.writeln('');
             termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
-            termRef.current.writeln(` Type ${formatText("help", "magenta", true)} to see available commands.`);
+            termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             printPrompt();
 
             let cmd = '';
@@ -173,19 +174,19 @@ const TerminalComponent: React.FC = () => {
             termRef.current.clear();
             termRef.current.reset();
             termRef.current.writeln(' Welcome to my terminal portfolio!');
-            termRef.current.writeln(' Type "help" to see available commands.');
+            termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             return;
         }
 
         switch (cmd) {
             case 'help':
-                termRef.current.writeln(formatText(" Available commands are as follows:", 'magenta', true));
+                termRef.current.writeln(formatText(" Available commands are as follows:", 'green', true));
                 termRef.current.writeln(` ${formatText("\uf2b5", "magenta", true)}  Type ${formatText("about", "magenta", true)} to learn more about me!`);
                 // termRef.current.writeln(' \uf07b  Type "projects" to view my projects');
-                termRef.current.writeln(` ${formatText("\uf095", "magenta", true)}  Type ${formatText("contact", "magenta", true)} to view my contact information.`);
-                termRef.current.writeln(` ${formatText("\uf15b", "magenta", true)}  Type ${formatText("resume", "magenta", true)} to view my resume.`);
-                termRef.current.writeln(` ${formatText("\uf0e2", "magenta", true)}  Type ${formatText("clear", "magenta", true)} to clear the terminal.`);
-                termRef.current.writeln(` ${formatText("\uf186", "magenta", true)}  Type ${formatText("toggle", "magenta", true)} to toggle between light and dark mode.`);
+                termRef.current.writeln(` ${formatText("\uf095", "cyan", true)}  Type ${formatText("contact", "cyan", true)} to view my contact information.`);
+                termRef.current.writeln(` ${formatText("\uf15b", "cyan", true)}  Type ${formatText("resume", "cyan", true)} to view my resume.`);
+                termRef.current.writeln(` ${formatText("\uf0e2", "red", true)}  Type ${formatText("clear", "red", true)} to clear the terminal.`);
+                termRef.current.writeln(` ${formatText("\uf186", "gray", true)}  Type ${formatText("toggle", "gray", true)} to toggle between light and dark mode.`);
                 break;
             case 'about':
                 termRef.current.writeln(" Hello World!");
@@ -215,15 +216,15 @@ const TerminalComponent: React.FC = () => {
             //     termRef.current.writeln(' 2. Project B: Another description...');
             //     break;
             case 'resume':
-                termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "magenta", true)} ...`);
+                termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
                 window.open("https://docs.google.com/gview?url=https://raw.githubusercontent.com/SatireSage/Resume/main/Sahaj_Singh_Resume.pdf&embedded=true");
                 break;
             case 'contact':
                 termRef.current.writeln(" Here are ways to get in touch with me:");
-                termRef.current.writeln(` ${formatText("\uf1fa", "magenta", true)} Type ${formatText("\"email\"", "magenta", true)} to contact me via Email`);
-                termRef.current.writeln(` ${formatText("\uf0ac", "magenta", true)} Type ${formatText("\"website\"", "magenta", true)} to visit my Personal Website`);
-                termRef.current.writeln(` ${formatText("\uf09b", "magenta", true)} Type ${formatText("\"github\"", "magenta", true)} to view my GitHub`);
-                termRef.current.writeln(` ${formatText("\uf08c", "magenta", true)} Type ${formatText("\"linkedin\"", "magenta", true)} to view my LinkedIn`);
+                termRef.current.writeln(` ${formatText("\uf1fa", "cyan", true)} Type ${formatText("\"email\"", "cyan", true)} to contact me via Email`);
+                termRef.current.writeln(` ${formatText("\uf0ac", "cyan", true)} Type ${formatText("\"website\"", "cyan", true)} to visit my Personal Website`);
+                termRef.current.writeln(` ${formatText("\uf09b", "cyan", true)} Type ${formatText("\"github\"", "cyan", true)} to view my GitHub`);
+                termRef.current.writeln(` ${formatText("\uf08c", "cyan", true)} Type ${formatText("\"linkedin\"", "cyan", true)} to view my LinkedIn`);
                 break;
             case 'email':
                 window.open("mailto:sahaj_singh@sfu.ca");
@@ -250,7 +251,7 @@ const TerminalComponent: React.FC = () => {
                 setRefreshKey(prevKey => prevKey + 1);
                 break;          
             default:
-                termRef.current.writeln(` Command not found: ${cmd}`);
+                termRef.current.writeln(` Command not found: ${formatText(`${cmd}`, "red", true)}`);
                 break;
         }
     };
