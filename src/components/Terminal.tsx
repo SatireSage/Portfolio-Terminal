@@ -14,23 +14,6 @@ type Repo = {
 };
 
 const TerminalComponent: React.FC = () => {
-    let githubDataString = '';
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const { data: repos } = await axios.get('https://api.github.com/users/SatireSage/repos');
-                const sortedData = repos.sort((a: any, b: any) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime());
-                const formattedData = sortedData.map((repo: Repo) => ` \x1b[1m\x1b[35mName:\x1b[0m ${repo.name}\n \x1b[1m\x1b[36mURL: ${repo.html_url}\x1b[0m\n \x1b[1m\x1b[35mDescription:\x1b[0m ${repo.description || 'No description'}\n\n`).join('');
-                //const formattedData = sortedData.map((repo: Repo) => `\x1b[1m\x1b[35mName:\x1b[0m ${repo.name} - \x1b[1m\x1b[36m${repo.html_url}\x1b[0m\n\x1b[1m\x1b[35mDescription:\x1b[0m ${repo.description || 'No description'}\n\n`).join('');
-                githubDataString = formattedData;
-            } catch (error) {
-                console.error('Error fetching the repos:', error);
-            }
-        };
-
-        fetchData();
-    }, []);
-
     const isMobile = (): boolean => window.innerWidth <= 768;
 
     const terminalStyle = {
@@ -198,7 +181,20 @@ const TerminalComponent: React.FC = () => {
         if (cmd === 'clear') {
             termRef.current.clear();
             termRef.current.reset();
-            termRef.current.writeln(' Welcome to my terminal portfolio!');
+            if (!isMobile()) {
+                termRef.current.writeln('');
+                termRef.current.writeln("   ███████╗ █████╗ ██╗  ██╗ █████╗      ██╗    ███████╗██╗███╗   ██╗ ██████╗ ██╗  ██╗");
+                termRef.current.writeln("   ██╔════╝██╔══██╗██║  ██║██╔══██╗     ██║    ██╔════╝██║████╗  ██║██╔════╝ ██║  ██║");
+                termRef.current.writeln("   ███████╗███████║███████║███████║     ██║    ███████╗██║██╔██╗ ██║██║  ███╗███████║");
+                termRef.current.writeln("   ╚════██║██╔══██║██╔══██║██╔══██║██   ██║    ╚════██║██║██║╚██╗██║██║   ██║██╔══██║");
+                termRef.current.writeln("   ███████║██║  ██║██║  ██║██║  ██║╚█████╔╝    ███████║██║██║ ╚████║╚██████╔╝██║  ██║");
+                termRef.current.writeln("   ╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚════╝     ╚══════╝╚═╝╚═╝  ╚═══╝ ╚═════╝ ╚═╝  ╚═╝");
+                termRef.current.writeln(colorize(" *If ascii art is not displaying properly, please rotate horizontally or widen the window!", 'gray', true));
+            }
+            termRef.current.writeln('');
+            termRef.current.writeln('');
+            termRef.current.writeln('');
+            termRef.current.writeln(" Welcome to Sahaj's terminal portfolio!");
             termRef.current.writeln(` Type ${formatText("help", "green", true)} to see available commands.`);
             return;
         }
@@ -236,10 +232,27 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` \uf1f9 ${new Date().getFullYear()} Sahaj Singh. All Rights Reserved.`);
                 break;
             case 'projects':
-                githubDataString.split('\n').forEach(line => {
-                    termRef.current!.writeln(line);
-                });
-                termRef.current.writeln(` ${formatText("\uf0ac Feel free to click on the links to visit the repository!", "cyan", true)}`);
+                let githubDataString = '';
+                (async () => {
+                    try {
+                        const { data: repos } = await axios.get('https://api.github.com/users/SatireSage/repos');
+                        const sortedData = repos.sort((a: any, b: any) => new Date(b.pushed_at).getTime() - new Date(a.pushed_at).getTime());
+                        const formattedData = sortedData.map((repo: Repo) => ` \x1b[1m\x1b[35mName:\x1b[0m ${repo.name}\n \x1b[1m\x1b[36mURL: ${repo.html_url}\x1b[0m\n \x1b[1m\x1b[35mDescription:\x1b[0m ${repo.description || 'No description'}\n\n`).join('');
+                        githubDataString = formattedData;
+                        termRef.current!.clear();
+                        termRef.current!.reset();
+                        termRef.current!.writeln(colorize(" \n\n\nProjects I've worked on:\n", 'magenta', true));
+                        githubDataString.split('\n').forEach(line => {
+                            termRef.current!.writeln(line);
+                        });
+                        termRef.current!.writeln(colorize(" Feel free to click on the link to visit the respective repository!", 'gray', true));
+                        termRef.current!.writeln("");
+                        printPrompt();
+                    } catch (error) {
+                        console.error('Error fetching the repos:', error);
+                    }
+                })();
+                console.log("Done");
                 break;
             case 'resume':
                 termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
