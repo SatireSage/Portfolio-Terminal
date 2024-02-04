@@ -265,8 +265,9 @@ const TerminalComponent: React.FC = () => {
                 console.log("Done");
                 break;
             case 'resume':
+                const resumeURL = theme === 'dark' ? 'http://resume.dark.sahajs.com' : 'http://resume.sahajs.com';
                 termRef.current.writeln(` ... Redirecting to my ${formatText("\uf15b resume", "cyan", true)} ...`);
-                window.open("http://resume.sahajs.com");
+                window.open(resumeURL);
                 break;
             case 'contact':
                 termRef.current.writeln(" Here are ways to get in touch with me:");
