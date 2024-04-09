@@ -1,18 +1,20 @@
 {
-  "main.css": "/static/css/main.8dd770ea.chunk.css",
-  "main.js": "/static/js/main.359fe36e.chunk.js",
-  "main.js.map": "/static/js/main.359fe36e.chunk.js.map",
-  "runtime~main.js": "/static/js/runtime~main.02a69d94.js",
-  "runtime~main.js.map": "/static/js/runtime~main.02a69d94.js.map",
-  "static/css/2.8836dbb0.chunk.css": "/static/css/2.8836dbb0.chunk.css",
-  "static/js/2.cd46f066.chunk.js": "/static/js/2.cd46f066.chunk.js",
-  "static/js/2.cd46f066.chunk.js.map": "/static/js/2.cd46f066.chunk.js.map",
-  "static/js/3.57b001d4.chunk.js": "/static/js/3.57b001d4.chunk.js",
-  "static/js/3.57b001d4.chunk.js.map": "/static/js/3.57b001d4.chunk.js.map",
-  "index.html": "/index.html",
-  "precache-manifest.d2be2270c180374d78e4737f0de67394.js": "/precache-manifest.d2be2270c180374d78e4737f0de67394.js",
-  "service-worker.js": "/service-worker.js",
-  "static/css/2.8836dbb0.chunk.css.map": "/static/css/2.8836dbb0.chunk.css.map",
-  "static/css/main.8dd770ea.chunk.css.map": "/static/css/main.8dd770ea.chunk.css.map",
-  "static/media/font-awesome.css": "/static/media/fontawesome-webfont.fee66e71.woff"
+  "files": {
+    "main.css": "/static/css/main.fba571d2.css",
+    "main.js": "/static/js/main.b0dadc0f.js",
+    "static/js/453.45d86ab6.chunk.js": "/static/js/453.45d86ab6.chunk.js",
+    "static/media/fontawesome-webfont.svg?v=4.7.0": "/static/media/fontawesome-webfont.c1e38fd9e0e74ba58f7a.svg",
+    "static/media/fontawesome-webfont.eot": "/static/media/fontawesome-webfont.8b43027f47b20503057d.eot",
+    "static/media/fontawesome-webfont.ttf?v=4.7.0": "/static/media/fontawesome-webfont.1e59d2330b4c6deb84b3.ttf",
+    "static/media/fontawesome-webfont.woff?v=4.7.0": "/static/media/fontawesome-webfont.f691f37e57f04c152e23.woff",
+    "static/media/fontawesome-webfont.woff2?v=4.7.0": "/static/media/fontawesome-webfont.20fd1704ea223900efa9.woff2",
+    "index.html": "/index.html",
+    "main.fba571d2.css.map": "/static/css/main.fba571d2.css.map",
+    "main.b0dadc0f.js.map": "/static/js/main.b0dadc0f.js.map",
+    "453.45d86ab6.chunk.js.map": "/static/js/453.45d86ab6.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fba571d2.css",
+    "static/js/main.b0dadc0f.js"
+  ]
 }
