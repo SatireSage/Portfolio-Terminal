@@ -150,10 +150,9 @@ const TerminalComponent: React.FC = () => {
                 termRef.current.writeln(` I'm a ${formatText("4th-year Simon Fraser University", "magenta", true)} student pursuing a ${formatText("Computer Engineering", "magenta", true)} degree with a minor in Computing Sciences. Passionate about coding, I specialize in ${formatText("C and Python", "magenta", true)}. I began self-learning programming in middle school and continued to develop my skills through my degree. Check out my GitHub for projects and my journey on ${formatText("\uf0ac https://sahajs.com", "cyan", true)}. Click on the link or simply type ${formatText("website", "cyan", true)} to check it out!`);
                 termRef.current.writeln(" ");
                 termRef.current.writeln(" Here are some fun facts about me:");
-                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm majoring in Computer Engineering 🧑‍💻`);
-                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm working on making a Pi-Arcade 🕹️`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm majoring in Computer Engineering 🧑‍💻 and minoring in CS`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I like to write short stories 📝`);
-                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm a student at SFU 📕`);
+                termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm a Student 📕 and TA at SFU 🎓`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I like mystery movies 🎥`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I can't sing 🎤 but I'm a music lover 🎧`);
                 termRef.current.writeln(`   ${formatText("->", "magenta", true)} I'm a gamer 🎮`);
